@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AdminViewController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,19 +29,19 @@ Route::get('/double/{one}/{two}', function ($one, $two) {
     return "$one & $two";
 });
 
-Route::get('login/{username?}/{password?}', function ($username=null, $password=null) {
-    //parameter không bắt buộc thì bạn chỉ việc thêm dấu
-    if (!$username) {
-        return "Xin mời nhập tên đăng nhập";
-    }
-    if (!$password) {
-        return "Xin mời nhập mật khẩu";
-    }
-    else {
-        return "tài khoải: $username <br> mật khẩu: $password";
-    }
+// Route::get('login/{username?}/{password?}', function ($username=null, $password=null) {
+//     //parameter không bắt buộc thì bạn chỉ việc thêm dấu
+//     if (!$username) {
+//         return "Xin mời nhập tên đăng nhập";
+//     }
+//     if (!$password) {
+//         return "Xin mời nhập mật khẩu";
+//     }
+//     else {
+//         return "tài khoải: $username <br> mật khẩu: $password";
+//     }
 
-});
+// });
 
 Route::get('/test-name/{name}/{var}', function ($name, $var) {
     //gọi parameter name
@@ -59,3 +61,11 @@ Route::prefix('test')->name('test.')->group(function () {
         return "$string";
     })->whereAlpha('string')->name('where-string');
 });
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/login/rule', [AdminViewController::class, 'index'])
+    ->name('your-rule')
+    ->middleware('admin');
