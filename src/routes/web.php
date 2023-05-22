@@ -15,12 +15,10 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [ProductController::class, 'view'])->name('home');
 
-Route::get('/add', function () {
-    return view('add-product');
+Route::get('/create', function () {
+    return view('create-product');
 });
 
 Route::prefix('/products')->group( function () {
