@@ -58,6 +58,7 @@
             @foreach ($products as $product)
                 <div class="col-6 col-md-4 col-lg-3 my-5">
                     <div class="card h-100 border-2">
+                        {{-- <p>@dd($product->manufacturer())</p> --}}
                         <img src="{{ $product->img }}" class="card-img" alt="{{ $product->title }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $product->title }}</h5>
